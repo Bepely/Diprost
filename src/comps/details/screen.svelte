@@ -8,12 +8,16 @@ export let user = "main"
 
     <div id="container" class="contaner" >
 
-        {#if user == "doer"}
-        <img src={$file_store.doer.img} alt="Фото исполнгителя">
-        {:else if user == "client"}
-        <img src={$file_store.client.img} alt="Фото заказчика">
+        {#if user == "main"}
+        Загрузите фото
         {:else}
-        Здесь будет фото
+            {#if user == "doer"}
+            <img src={$file_store.doer.img} alt="Фото исполнгителя">
+            {:else if user == "client"}
+            <img src={$file_store.client.img} alt="Фото заказчика">
+            {:else}
+            Как так вышло?
+            {/if}
         {/if}
     </div>
         

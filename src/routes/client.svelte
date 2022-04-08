@@ -12,6 +12,7 @@
     const get_file = () => {
         console.log($file_store);
         $file_store.client.img = $file_store.img
+        $file_store.client.name = $file_store.name
     }
 
     
@@ -22,6 +23,7 @@
 
         <Header />
         <div id="container" class="container">
+            <h2>{$file_store.client.name}</h2>
         <Screen user="client"/>
         </div>
         <Button trigger={get_file}> Получить фото</Button>

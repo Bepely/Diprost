@@ -1,12 +1,15 @@
 <script>
 // @ts-nocheck
 
+
     import Header from "../comps/parts/header.svelte"
     import Screen from "../comps/details/screen.svelte"
 
     import Process from "../comps/parts/pocess.svelte"
 
     import Button from "../comps/details/button.svelte"
+    import File_input from "../comps/details/input_file.svelte"
+    import Text_input from "../comps/details/input_text.svelte"
 
 
     import {file_store} from "../stores/file"
@@ -18,17 +21,33 @@
         $file_store.name = $file_store.doer.name            //Функция отвечает за отправку файла с сайта на сервер
         $file_store.img = $file_store.doer.img
         $file_store.check = true
+        console.log($file_store);
     }
 	
 
 
 
-	const onFileSelected =(e)=>{
+	const chooseFile =(e)=>{
             let image = e.target.files[0];                //Функция отвечает за загрузку файла с устройства на сайт
             let reader = new FileReader();
                 reader.readAsDataURL(image);
                 reader.onload = e => {$file_store.doer.img = e.target.result};
         }
+
+
+    const removeFile = () => {
+        $file_store.img = ""
+        $file_store.name = ""
+        $file_store.doer.name = ""
+        $file_store.doer.img = ""
+        $file_store.client.img = ""
+        $file_store.client.name = ""
+    }
+
+    const setName = (t) => {
+        
+        $file_store.doer.name = t
+    }
    
 </script>
 
@@ -39,16 +58,14 @@
     <Header />
     <div id="main_part" class="container holder">
         <div id="left">
-            <h4>Название файла<input bind:value={name} on:input={$file_store.doer.name = name} type="text"></h4>
-            <input
-                accept=".jpg, .jpeg, .png"
-                bind:files
-                id="files"
-                name="files"
-                type="file"
-                on:change= {(e)=>onFileSelected(e)}/>
+            <div id="file_holder">
+                <File_input trigger={chooseFile}/>
+                <Text_input fn={setName} target={$file_store.doer.name} textholder="название файла"/>
+            </div>
+            
 
-            <Button trigger={sendFile}> Отправить фото</Button>
+            <Button trigger={sendFile}>Отправить фото</Button>
+            <Button trigger={removeFile}>Удалить фото</Button>
         </div>
 
         <div id="right">
@@ -78,7 +95,7 @@
         place-items: center;
 
         grid-template-columns: 1fr 2fr;
-
+        border: 1px solid black;
 
     }
 
@@ -91,5 +108,16 @@
         height: 50%;
     }
 
+    #file_holder{
+        display: grid;
+        place-items: center;
+
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+    
+
+
+   
     
 </style>

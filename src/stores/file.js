@@ -7,11 +7,6 @@ export let file_store = writable({
     name: "",
     img: "",
 
-
-
-    check: false,
-    show: false,
-
     doer:{
         name: "",
         img: "",
