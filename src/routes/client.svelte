@@ -1,13 +1,32 @@
 <script>
+
+    import {file_store} from "../stores/file"
+
     import Header from "../comps/parts/header.svelte"
-    import Display from "../comps/parts/main_display.svelte"
+    import Screen from "../comps/details/screen.svelte"
+    import Process from "../comps/parts/pocess.svelte"
+
+    import Button from "../comps/details/button.svelte"
+
+
+    const get_file = () => {
+        console.log($file_store);
+        $file_store.client.img = $file_store.img
+    }
+
+    
     </script>
     
+    <Process />
     <div id="root">
+
         <Header />
-        <Display />
-        
+        <div id="container" class="container">
+        <Screen user="client"/>
+        </div>
+        <Button trigger={get_file}> Получить фото</Button>
     </div>
+   
     
     
     
@@ -18,6 +37,16 @@
         box-sizing: border-box;
     }
 
+    @media(min-width: 900px){
+
+#container{
+    
+
+    display: grid;
+    place-items: center;
+}
+
+}
     
     
     </style>
