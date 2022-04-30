@@ -1,12 +1,21 @@
 <script>
-    
+// @ts-nocheck
+
+    import { file_store } from "../../stores/file";
 
     export let trigger = (e) => {console.log("file input trigger")}
 </script>
 
 
 <div id="upload_file_button">
-<input type="file" name="file" id="file" class="inputfile" accept=".jpg, .jpeg, .png" on:change={(e)=>trigger(e)}/>
+<input 
+    type="file" 
+    name="file"
+     bind:files={$file_store.doer.raw_files}
+     multiple id="file" class="inputfile"
+     accept=".jpg, .jpeg, .png"
+     on:change={(e)=>trigger(e)}
+/>
 <label for="file">Выберите файл</label>
 </div>
 

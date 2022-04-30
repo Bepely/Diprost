@@ -16,8 +16,8 @@ import {file_store} from "../../stores/file"
 
 <style>
 button{
-    width: 200px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
 }
 
 </style>

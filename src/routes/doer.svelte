@@ -11,11 +11,17 @@
     import File_input from "../comps/details/input_file.svelte"
     import Text_input from "../comps/details/input_text.svelte"
 
+    import LR from "../comps/details/lr.svelte"
 
-    import {file_store} from "../stores/file"
+    import Point from "../stores/Point"
 
-    let  files, name;
-   
+
+    import {file_store, doer_store} from "../stores/file"
+
+
+    let screen_emit = $doer_store.screen_emit
+
+     
 
     let sendFile = () => {
         $file_store.name = $file_store.doer.name            //Функция отвечает за отправку файла с сайта на сервер
@@ -25,14 +31,58 @@
     }
 	
 
-
-
-	const chooseFile =(e)=>{
-            let image = e.target.files[0];                //Функция отвечает за загрузку файла с устройства на сайт
-            let reader = new FileReader();
-                reader.readAsDataURL(image);
-                reader.onload = e => {$file_store.doer.img = e.target.result};
+    let setPoint = () => {              //Функция отвечает за создание и описание поинта в работу
+       let point = {
+          name: $file_store.doer.name,
+          file: $file_store.doer.img,
+          desc: $file_store.doer.desc
         }
+        $doer_store.points.push(point)
+
+    }
+
+
+
+    const chooseFile =()=>{      
+    //Функция отвечает за загрузку файла с устройства на сайт
+
+    let counter = 0
+    let file_buffer = []
+
+    let set_doer_files = () => {
+        $doer_store.points = file_buffer
+        $doer_store.current_point = $doer_store.points[0]
+        $doer_store.screen_check = true;
+        counter = 0;
+        console.log("DONE!", $doer_store);}
+            
+            $doer_store.screen_check = false;
+            Array.from($file_store.doer.raw_files).forEach(img => {
+                
+                const reader = new FileReader()
+                reader.readAsDataURL(img)
+                reader.onload = () => {
+                    let point = new Point(counter, reader.result, "salam")
+                    file_buffer.push(point)
+                    counter++    
+                    if(counter == Array.from($file_store.doer.raw_files).length){
+                    set_doer_files();
+                    } 
+                                    
+                }
+                
+            })
+                   
+            
+       
+        }
+
+           
+            
+            
+            
+            
+          
 
 
     const removeFile = () => {
@@ -68,11 +118,21 @@
             <Button trigger={removeFile}>Удалить фото</Button>
         </div>
 
+
+       
         <div id="right">
             <h2>{$file_store.name} </h2>
+            {#key $doer_store.current_point}
             <Screen 
+            show_point = {$doer_store.current_point.file}
             user="doer"/>
+            {/key}
+            
+            <LR/>
+            
         </div>
+        
+        
         
         
     </div>
