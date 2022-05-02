@@ -33,22 +33,31 @@
 }
 
 .inputfile + label {
-    font-size: 1.25em;
+    font-size: 1em;
     font-weight: 700;
     color: #000204;
     background-color: #baccdc;
     display: grid;
-    width: 200px;
-    height: 50px;
+    width: 80%;
+    height: 80%;
     place-items: center;
-    border-radius: 5px;
-    border: 0px;
+    border-radius: 14px;
+    border: 2px solid black;
+    text-align: center;
 }
 
 .inputfile:focus + label,
 .inputfile + label:hover {
     background-color: #baccdc;
     border: 3px solid #000204;
+}
+
+#upload_file_button{
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    place-items: center;
 }
        
 </style>

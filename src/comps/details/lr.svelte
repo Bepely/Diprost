@@ -1,11 +1,8 @@
 <script>
-import {file_store, doer_store} from "../../stores/file"
-import {beforeUpdate, afterUpdate} from "svelte"
+import {doer_store} from "../../stores/file"
+
 
 import Button from "./button.svelte"
-
-
-
 
 
 

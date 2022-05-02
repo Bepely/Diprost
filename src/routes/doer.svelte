@@ -15,6 +15,8 @@
 
     import Point from "../stores/Point"
 
+    import Panel from "../comps/panel/Panel.svelte"
+
 
     import {file_store, doer_store} from "../stores/file"
 

@@ -33,15 +33,18 @@ export let show_point = "https://thumbs.dreamstime.com/b/wait-handwritten-white-
 
 <style>
 #container{
-    width: 720px;
-    height: 480px;
-
-    border: 1px solid black;
+    display: grid;
+    place-items: center;
+    overflow-y: hidden;
+    width: 100%;
+    height: 100%;
     
 }
 
 img{
-    width: 100%;
-    height: 100%;
+    max-width: 40vw;
+    max-height: 40vh;
+    object-fit: cover;
+    border-radius: 14px;
 }
 </style>
