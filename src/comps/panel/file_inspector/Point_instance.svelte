@@ -10,7 +10,7 @@ let switchCurrent = () => {
 </script>
 
     <div id="instance" on:click={switchCurrent}>
-        {instance.name}
+        {instance.session_id}
     </div>
 
 

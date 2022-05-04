@@ -1,6 +1,4 @@
 <script>
-import {file_store} from "../../stores/file"
-
 export let textholder = "текст"
 export let target = ""
 export let fn = console.log("FN is not assigned");
@@ -10,7 +8,7 @@ export let fn = console.log("FN is not assigned");
 
 
 <div id="upload_text_box">
-    <input name="text" id="text" on:change={fn(target)} bind:value={target} type="text" placeholder="Введите {textholder}">
+    <label for="text"><slot></slot></label><input name="text" id="text" on:change={fn(target)} bind:value={target} type="text" placeholder="Введите {textholder}">
 </div>
 
 

@@ -1,9 +1,19 @@
 <script>
+import {doer_store} from "../../../stores/file"
+import Button from "../../details/button.svelte"
 
+
+let send = () => {
+    console.log("SENDING ", $doer_store);
+}
+let mainpage = () => {
+    location.href = "http://localhost:3000"
+}
 </script>
 
 <div id="SS_root" class="card">
-    SAVE SEND
+    <Button trigger={mainpage}>На главную</Button>
+    <Button trigger={send}>Отправить работу</Button>
 </div>
 
 

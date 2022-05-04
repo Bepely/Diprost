@@ -1,6 +1,6 @@
 export default class Point{
-    constructor(name, file, desc) {
-       this.name = name
+    constructor(session_id, file, desc) {
+       this.session_id = session_id
        this.file = file
        this.desc = desc
     }
